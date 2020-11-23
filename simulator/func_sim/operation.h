@@ -228,10 +228,16 @@ public:
     using MyDatapath = Datapath<T>;
     using Register = R;
     using RegisterUInt = T;
+<<<<<<< HEAD
     R get_src( size_t index) const { return src.at( index); }
     R get_dst( size_t index) const { return dst.at( index); }
     void set_src( R reg, size_t index) { src.at( index) = reg; }
     void set_dst( R reg, size_t index) { dst.at( index) = reg; }
+=======
+    R get_src_num( size_t index) const;
+    R get_dst_num()  const { return dst;  }
+    R get_dst2_num() const { return dst2; }
+>>>>>>> 85e7c471d433758c5ad7c1524d53517da1067f7a
 
     std::ostream& dump_content( std::ostream& out, const std::string& disasm) const;
 
@@ -242,6 +248,17 @@ protected:
     std::array<R, MAX_SRC_NUM> src = { R::zero(), R::zero(), R::zero() };
     std::array<R, MAX_DST_NUM> dst = { R::zero(), R::zero() };
 };
+
+template<typename T, typename R>
+R BaseInstruction<T, R>::get_src_num( size_t index) const
+{
+    if ( index == 0)
+        return src1;
+    else if ( index == 1)
+        return src2;
+    else
+        return src3;
+}
 
 template<typename T, typename R>
 std::string BaseInstruction<T, R>::generate_disasm() const
