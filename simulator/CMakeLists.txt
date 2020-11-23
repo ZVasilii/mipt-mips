@@ -4,8 +4,7 @@
 #! soshinkonstantinv@gmail.com
 #! https://github.com/SoshinK
 
-cmake_minimum_required(VERSION 3.12.5)
-# cmake_minimum_required(VERSION 3.13.5) # for add_link_options
+cmake_minimum_required(VERSION 3.13.5) # for add_link_options
 
 project(mipt-mips)
 enable_testing()
@@ -20,6 +19,10 @@ option(ENABLE_IPO "Enable interprocedural optimizations" OFF)
 option(ENABLE_ASAN "Enable address sanitizing in debug build" ON)
 option(ENABLE_UBSAN "Enable UB sanitizing in debug build" ON)
 set(GDB_SOURCE_PATH "" CACHE PATH "Path to GDB source tree")
+
+if(NOT DEFINED PYTHON3_COMMAND)
+  set(PYTHON3_COMMAND python3)
+endif()
 
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
   message(STATUS "Setting build type to '${default_build_type}' as none was specified.")
@@ -73,6 +76,7 @@ set(TESTS_CPPS
     func_sim/rf/t/unit_test.cpp
     func_sim/traps/t/unit_test.cpp
     func_sim/driver/t/unit_test.cpp
+    func_sim/t/alu_test.cpp
     func_sim/t/unit_test.cpp
     modules/fetch/bpu/t/unit_test.cpp
     modules/core/t/unit_test.cpp
@@ -88,7 +92,7 @@ file(GLOB_RECURSE RISCV_OPCODES ${RISCV_DIR}/opcodes-*)
 
 add_custom_command(
     OUTPUT ${CMAKE_CURRENT_LIST_DIR}/riscv.opcode.gen.h
-    COMMAND python3 ${RISCV_DIR}/parse_opcodes -c ${RISCV_OPCODES} > ${CMAKE_CURRENT_LIST_DIR}/riscv.opcode.gen.h
+    COMMAND ${PYTHON3_COMMAND} ${RISCV_DIR}/parse_opcodes -c ${RISCV_OPCODES} > ${CMAKE_CURRENT_LIST_DIR}/riscv.opcode.gen.h
     DEPENDS ${RISCV_DIR}/parse_opcodes ${RISCV_OPCODES}
 )
 
@@ -112,7 +116,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "AppleClang")
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wno-unused-command-line-argument")
+    add_link_options(-Wno-unused-command-line-argument)
 endif()
 
 include(CheckCXXCompilerFlag)
@@ -122,11 +126,11 @@ if (COMPILER_SUPPORTS_MARCH_NATIVE)
 endif()
 
 if (ENABLE_COVERAGE)
+    message(STATUS "Coverage collection enabled")
     add_definitions(-DNDEBUG) # exclude 'assert' macro
     if (NOT MSVC)
-        set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -fprofile-arcs -ftest-coverage -g -fno-inline")
-        # add_link_options(--coverage)
-        set(CMAKE_EXE_LINKER_FLAGS_DEBUG "${CMAKE_EXE_LINKER_FLAGS_DEBUG} --coverage")
+        set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} --coverage -g")
+        add_link_options(--coverage)
         if (NOT CMAKE_CXX_COMPILER_ID MATCHES "AppleClang")
             link_libraries(gcov)
         endif()
@@ -135,11 +139,14 @@ endif()
 
 if (ENABLE_PROFILE)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pg")
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -pg")
+    add_link_options(-pg)
 endif()
 
 if (ENABLE_ASAN AND NOT MSVC)
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -fsanitize=address")
+    if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+        set(CMAKE_EXE_LINKER_FLAGS_DEBUG "${CMAKE_EXE_LINKER_FLAGS_DEBUG} -static-libasan")
+    endif()
 endif()
 
 if (ENABLE_UBSAN AND NOT MSVC)

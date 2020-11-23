@@ -1,12 +1,3 @@
-[![Build Status](https://travis-ci.com/MIPT-ILab/mipt-mips.svg?branch=master)](https://travis-ci.com/MIPT-ILab/mipt-mips)
-[![Build status](https://ci.appveyor.com/api/projects/status/3a8h619rhn3pcdlm?svg=true)](https://ci.appveyor.com/project/pavelkryukov/mipt-mips)
-![Visualizer CI](https://github.com/MIPT-ILab/mipt-mips/workflows/Visualizer%20CI/badge.svg)
-
-[![codecov](https://codecov.io/gh/MIPT-ILab/mipt-mips/branch/master/graph/badge.svg)](https://codecov.io/gh/MIPT-ILab/mipt-mips)
-[![Language grade: C/C++](https://img.shields.io/lgtm/grade/cpp/g/MIPT-ILab/mipt-mips.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/MIPT-ILab/mipt-mips/context:cpp)
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/MIPT-ILab/mipt-mips.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/MIPT-ILab/mipt-mips/alerts/)
-[![Github Releases](https://img.shields.io/github/release/MIPT-ILab/mipt-mips.svg)](https://github.com/MIPT-ILab/mipt-mips/releases)
-
 # MIPT-V / MIPT-MIPS
 
 MIPT-V / MIPT-MIPS is a pre-silicon simulator of MIPS and RISC-V CPU. It measures _performance_ of program running on CPU, thus taking best features of RTL and common functional simulation:
@@ -40,10 +31,10 @@ More details about internals are available on [Wiki](https://github.com/MIPT-ILa
 ## Requirements
 
 We use C++20 features and Boost 1.71. Thus, you have to [use compilers](https://github.com/MIPT-ILab/mipt-mips/wiki/C-compilers) of these versions or newer:
-* GCC 9
+* GCC 10
 * Clang 10.0.0
-* Apple LLVM Version 11.0.3
-* MS Visual Studio 2019
+* Apple LLVM Version 12.0.0
+* MS Visual Studio 2019 16.8
 
 [Install Boost](https://github.com/MIPT-ILab/mipt-mips/wiki/Required-libraries) before building the project.
 
@@ -51,7 +42,7 @@ To work with RISC-V traces, you need to install RISC-V toolchain. Please follow 
 
 To work with MIPS traces, you need to install MIPS binutils. Please follow [our manual](https://github.com/MIPT-ILab/mipt-mips/wiki/MIPS-binutils) if you are using Linux, OS X, or Windows.
 
-Our build system is CMake. You should install CMake 3.12.5 or higher.
+Our build system is CMake. You should install CMake 3.13.5 or higher.
 Check [our Wiki page](https://github.com/MIPT-ILab/mipt-mips/wiki/CMake) to get more details about CMake.
 Users of IDE (Visual Studio, Eclipse, CodeBlocks etc.) may generate project files with CMake as well.
 
@@ -115,6 +106,10 @@ To build simulator faster, we recommend to [install Ninja](https://github.com/ni
   1. Now you can run simulation: `./mipt-mips -b /path/to/binary`
   1. See more command line options in the paragraph below
   1. To run all unit tests, call `ninja unit-tests && ctest --verbose -C Release` from your build directory.
+
+## Test Coverage Chart!
+
+[![Code Coverage](https://codecov.io/gh/MIPT-ILab/mipt-mips/branch/master/graphs/tree.svg)](https://codecov.io/gh/MIPT-ILab/mipt-mips)
 
 ## About MIPT-V / MIPT-MIPS
 
