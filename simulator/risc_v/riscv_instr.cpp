@@ -93,7 +93,6 @@ template<typename I> const auto execute_divu = RISCVMultALU<I>::template div<typ
 template<typename I> const auto execute_rem = RISCVMultALU<I>::template rem<sign_t<typename I::RegisterUInt>>;
 template<typename I> const auto execute_remu = RISCVMultALU<I>::template rem<typename I::RegisterUInt>;
 // B
-
 template<typename I> const auto execute_bfp = RISCVALU<I>::bit_field_place;
 template<typename I> const auto execute_clmul = RISCVALU<I>::template clmul<typename I::RegisterUInt>;
 template<typename I> const auto execute_clz = RISCVALU<I>::template clz<typename I::RegisterUInt>;

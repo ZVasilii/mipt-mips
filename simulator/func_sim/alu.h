@@ -252,10 +252,8 @@ struct ALU
     static void min( Instr* instr)  { instr->v_dst[0] = instr->v_src[lt( instr) ? 0 : 1]; }
     static void minu( Instr* instr) { instr->v_dst[0] = std::min( instr->v_src[0], instr->v_src[1]); }
 
-
     template<typename T> static
     void clmul( Instr* instr)
-
     {
         instr->v_dst[0] = 0;
         for ( std::size_t index = 0; index < bitwidth<T>; index++)
