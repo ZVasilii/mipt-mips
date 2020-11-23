@@ -117,9 +117,9 @@ jobs:
             cxx: g++-10
             gcov: gcov-10
           - name: llvm
-            cc: clang-10
-            cxx: clang++-10
-            gcov: "llvm-cov-10 gcov"
+            cc: clang-11
+            cxx: clang++-11
+            gcov: "llvm-cov-11 gcov"
 
     steps:
     - name: Checkout repository
@@ -134,7 +134,7 @@ jobs:
 
     - name: Install packages
       run: |
-        sudo apt-get install ninja-build clang++-10 clang-tidy-10 llvm-10
+        sudo apt-get install ninja-build clang++-11 clang-tidy-11 llvm-11
         echo "$BOOST_ROOT_1_72_0" >> $GITHUB_PATH
 
     - name: Create CMake dir
