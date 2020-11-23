@@ -244,6 +244,7 @@ struct ALU
     static void movz( Instr* instr)  { move( instr); if (instr->v_src[1] != 0) instr->mask = 0; }
 
     // Bit manipulations
+<<<<<<< HEAD
     template<typename T> static void sbinv( Instr* instr) { instr->v_dst[0] = instr->v_src[0] ^ ( lsb_set<T>() << shamt_v_src2<T>( instr)); }
     template<typename T> static void sbext( Instr* instr) { instr->v_dst[0] = 1U & ( instr->v_src[0] >> shamt_v_src2<T>( instr)); }
 
@@ -255,6 +256,10 @@ struct ALU
 
     template<typename T> static
     void clmul( Instr* instr)
+=======
+    template<typename I> static void sbext( I* instr) { instr->v_dst = 1 & ( instr->v_src1 >> shamt_v_src2<typename I::RegisterUInt>( instr)); }
+    template<typename I> static void sbinv(I* instr) {instr->v_dst = v_src1 ^ (1 << shamt_v_src2<typename I::RegisterUInt>(instr));}
+>>>>>>> b85a9f03c4c9f6d7f7cb436d97f569ae48d47c47
 
     {
         instr->v_dst[0] = 0;
@@ -278,6 +283,19 @@ struct ALU
         instr->v_dst[0] = ( (instr->v_src[0] >> pack_width) | (instr->v_src[1] & (bitmask<T>(pack_width) << pack_width)));
     }
 
+    // Bit Extract/Deposit
+    template<typename I> static
+    void bext( I* instr)
+    {
+        instr->v_dst = 0;
+        for (int i = 0, j = 0; i <bitwidth<typename I::RegisterUInt>; i++)
+            if ((instr->v_src2 >> i) & 1) {
+                if ((instr->v_src1 >> i) & 1)
+                    instr->v_dst |= 1 << j;
+                j++;
+            }
+    }
+    
     // Branches
     template<Predicate p> static
     void branch( Instr* instr)

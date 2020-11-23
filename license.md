@@ -1,6 +1,10 @@
 # The MIT License (MIT)
 
+<<<<<<< HEAD
 Copyright &copy; 2012–2020 MIPT-ILab, Alexander Titov, Pavel Kryukov, Igor Smirnov, Igor Burovenko, Kamil Garifullin, Oleg Ladin, Kirill Korolev, Victor Prutyanov, Ivan Korostelev, Alex Seppar, George Korepanov, Alexey Steksov, Kirill Nedostoev, Alexander Misevich, Denis Los, Alexander Timofeev, Konstantin Soshin, Yan Logovskiy, Andrei Sultan, Vyacheslav Kompan, Yauheni Sharamed, Andrey Agrachev, Vsevolod Pukhov, Arsen Davtyan, Egor Bova, Rustem Yunusov, Maxim Davydov, Eric Konks, Igor Bulatov, Kirill Chemrov, Alexandr Vinogradov, Airat Nazmiev, Daniel Kofanov, Nikolay Zernov, Vladimir Prokhorov, Ilya Burtakov, Nikita Gorbachev, Yaroslav Okatev, Roman Zlobin, Yuly Tarasov, Vladimir Graudt, Alexey Shcherbakov, Anton Okley, Egor Titov, Eugene Naydanov, Mihail Fedorov, Vasilii Zaitsev, Ravil Zakiryanov, Ivan Burtakov, and Johannes Pohl.
+=======
+Copyright &copy; 2012–2019 MIPT-ILab, Alexander Titov, Pavel Kryukov, Igor Smirnov, Igor Burovenko, Kamil Garifullin, Oleg Ladin, Kirill Korolev, Victor Prutyanov, Ivan Korostelev, Alex Seppar, George Korepanov, Alexey Steksov, Kirill Nedostoev, Alexander Misevich, Denis Los, Alexander Timofeev, Konstantin Soshin, Yan Logovskiy, Andrei Sultan, Vyacheslav Kompan, Yauheni Sharamed, Andrey Agrachev, Vsevolod Pukhov, Arsen Davtyan, Egor Bova, Rustem Yunusov, Maxim Davydov, Eric Konks, Igor Bulatov, Kirill Chemrov, Alexandr Vinogradov, Airat Nazmiev, Daniel Kofanov, Nikolay Zernov, Vladimir Prokhorov, Ilya Burtakov, Nikita Gorbachev, Yaroslav Okatev, Roman Zlobin, Vitaly Nizamutdinov, Andrey Tomashev, Serge Lamikhov-Center, and Johannes Pohl.
+>>>>>>> b85a9f03c4c9f6d7f7cb436d97f569ae48d47c47
 
 ----
 
