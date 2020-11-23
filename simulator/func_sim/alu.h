@@ -113,6 +113,7 @@ struct ALU
     static void addr( Instr* instr) { instr->mem_addr = narrow_cast<Addr>( instr->v_src[0] + instr->v_imm); }
 
     // Predicate helpers - unary
+<<<<<<< HEAD
     static bool lez( const Instr* instr) { return narrow_cast<RegisterSInt>( instr->v_src[0]) <= 0; }
     static bool gez( const Instr* instr) { return narrow_cast<RegisterSInt>( instr->v_src[0]) >= 0; }
     static bool ltz( const Instr* instr) { return narrow_cast<RegisterSInt>( instr->v_src[0]) < 0; }
@@ -133,6 +134,28 @@ struct ALU
     static bool gei( const Instr* instr) { return narrow_cast<RegisterSInt>( instr->v_src[0]) >= narrow_cast<RegisterSInt>( instr->v_imm); }
     static bool ltiu( const Instr* instr) { return instr->v_src[0] < instr->v_imm; }
     static bool geiu( const Instr* instr) { return instr->v_src[0] >= instr->v_imm; }
+=======
+    template<typename I> static bool lez( const I* instr) { return narrow_cast<I::RegisterSInt>( instr->v_src[0]) <= 0; }
+    template<typename I> static bool gez( const I* instr) { return narrow_cast<I::RegisterSInt>( instr->v_src[0]) >= 0; }
+    template<typename I> static bool ltz( const I* instr) { return narrow_cast<I::RegisterSInt>( instr->v_src[0]) < 0; }
+    template<typename I> static bool gtz( const I* instr) { return narrow_cast<I::RegisterSInt>( instr->v_src[0]) > 0; }
+
+    // Predicate helpers - binary
+    template<typename I> static bool eq( const I* instr)  { return instr->v_src[0] == instr->v_src[1]; }
+    template<typename I> static bool ne( const I* instr)  { return instr->v_src[0] != instr->v_src[1]; }
+    template<typename I> static bool geu( const I* instr) { return instr->v_src[0] >= instr->v_src[1]; }
+    template<typename I> static bool ltu( const I* instr) { return instr->v_src[0] <  instr->v_src[1]; }
+    template<typename I> static bool ge( const I* instr)  { return narrow_cast<I::RegisterSInt>( instr->v_src[0]) >= narrow_cast<I::RegisterSInt>( instr->v_src[1]); }
+    template<typename I> static bool lt( const I* instr)  { return narrow_cast<I::RegisterSInt>( instr->v_src[0]) <  narrow_cast<I::RegisterSInt>( instr->v_src[1]); }
+
+    // Predicate helpers - immediate
+    template<typename I> static bool eqi( const I* instr) { return instr->v_src[0] == instr->v_imm; }
+    template<typename I> static bool nei( const I* instr) { return instr->v_src[0] != instr->v_imm; }
+    template<typename I> static bool lti( const I* instr) { return narrow_cast<I::RegisterSInt>( instr->v_src[0]) < narrow_cast<I::RegisterSInt>( instr->v_imm); }
+    template<typename I> static bool gei( const I* instr) { return narrow_cast<I::RegisterSInt>( instr->v_src[0]) >= narrow_cast<I::RegisterSInt>( instr->v_imm); }
+    template<typename I> static bool ltiu( const I* instr) { return instr->v_src[0] < instr->v_imm; }
+    template<typename I> static bool geiu( const I* instr) { return instr->v_src[0] >= instr->v_imm; }
+>>>>>>> 204035bc27eb7ea2656fc10c37f23ba6b48571d7
 
     // General addition
     template<typename T> static void addition( Instr* instr)     { instr->v_dst[0] = narrow_cast<T>( instr->v_src[0]) + narrow_cast<T>( instr->v_src[1]); }
@@ -326,7 +349,11 @@ struct ALU
     template<Execute j> static
     void jump_and_link( Instr* instr)
     {
+<<<<<<< HEAD
         instr->v_dst[0] = narrow_cast<RegisterUInt>( instr->new_PC); // link
+=======
+        instr->v_dst[0] = narrow_cast<I::RegisterUInt>( instr->new_PC); // link
+>>>>>>> 204035bc27eb7ea2656fc10c37f23ba6b48571d7
         j( instr);   // jump
     }
 
@@ -334,7 +361,11 @@ struct ALU
     void branch_and_link( Instr* instr)
     {
         instr->is_taken_branch = p( instr);
+<<<<<<< HEAD
         instr->v_dst[0] = narrow_cast<RegisterUInt>( instr->new_PC);
+=======
+        instr->v_dst[0] = narrow_cast<I::RegisterUInt>( instr->new_PC);
+>>>>>>> 204035bc27eb7ea2656fc10c37f23ba6b48571d7
         if ( instr->is_taken_branch)
         {
             instr->new_PC = instr->get_decoded_target();
@@ -383,6 +414,11 @@ struct ALU
 
     static void bit_field_place( Instr* instr)
     {
+<<<<<<< HEAD
+=======
+        using XLENType = I::RegisterUInt;
+        size_t XLEN = bitwidth<XLENType>;
+>>>>>>> 204035bc27eb7ea2656fc10c37f23ba6b48571d7
         size_t len = ( narrow_cast<size_t>( instr->v_src[1]) >> 24) & 15U;
         len = len > 0 ? len : 16;
         size_t off = ( narrow_cast<size_t>( instr->v_src[1]) >> 16) & ( XLEN-1);

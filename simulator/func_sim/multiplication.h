@@ -1,7 +1,7 @@
 /*
 * multiplication.h - implementation of riscv multiplication
 * @author Yauheni Sharamed SHaramed.EI@phystech.edu
-* Copyright 2014-2019 MIPT-MIPS
+* Copyright 2014-2020 MIPT-MIPS
 */
 
 #include <infra/macro.h>
@@ -151,14 +151,24 @@ struct MIPSMultALU
     template<typename T> static void multiplication( Instr* instr)
     {
         const auto& result = mips_multiplication<T>( instr->v_src[0], instr->v_src[1]);
+<<<<<<< HEAD
         instr->v_dst[0]  = narrow_cast<typename Instr::RegisterUInt>( result.first);
         instr->v_dst[1] = narrow_cast<typename Instr::RegisterUInt>( result.second);
+=======
+        instr->v_dst[0]  = narrow_cast<I::RegisterUInt>( result.first);
+        instr->v_dst[1] = narrow_cast<I::RegisterUInt>( result.second);
+>>>>>>> 204035bc27eb7ea2656fc10c37f23ba6b48571d7
     }
 
     template<typename T> static void division( Instr* instr)
     {
         const auto& result = mips_division<T>( instr->v_src[0], instr->v_src[1]);
+<<<<<<< HEAD
         instr->v_dst[0]  = narrow_cast<typename Instr::RegisterUInt>( result.first);
         instr->v_dst[1] = narrow_cast<typename Instr::RegisterUInt>( result.second);
+=======
+        instr->v_dst[0]  = narrow_cast<I::RegisterUInt>( result.first);
+        instr->v_dst[1] = narrow_cast<I::RegisterUInt>( result.second);
+>>>>>>> 204035bc27eb7ea2656fc10c37f23ba6b48571d7
     } 
 };
