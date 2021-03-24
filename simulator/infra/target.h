@@ -8,6 +8,7 @@
 #define TARGET_H
 
 #include <infra/types.h>
+#include <iosfwd>
 
 /*
  * Target is an input interface for Fetch module
@@ -30,13 +31,7 @@ public:
         , valid( true)
     { }
 
-    friend std::ostream& operator<<( std::ostream& out, const Target& target)
-    {
-        if ( target.valid)
-            return out << target.address;
-
-        return out << "invalid";
-    }
+    friend std::ostream& operator<<( std::ostream& out, const Target& target);
 };
 
 #endif

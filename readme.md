@@ -1,3 +1,8 @@
+[![Contributors](https://img.shields.io/github/contributors/mipt-ilab/mipt-mips?label=Contributors)](https://github.com/MIPT-ILab/mipt-mips/graphs/contributors)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/MIPT-ILab/mipt-mips.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/MIPT-ILab/mipt-mips/alerts/)
+[![Language grade: C/C++](https://img.shields.io/lgtm/grade/cpp/g/MIPT-ILab/mipt-mips.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/MIPT-ILab/mipt-mips/context:cpp)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/MIPT-ILab/mipt-mips.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/MIPT-ILab/mipt-mips/context:javascript)
+
 # MIPT-V / MIPT-MIPS
 
 MIPT-V / MIPT-MIPS is a pre-silicon simulator of MIPS and RISC-V CPU. It measures _performance_ of program running on CPU, thus taking best features of RTL and common functional simulation:
@@ -23,10 +28,15 @@ Key microarchitecture features:
 * Configurable instruction cache
 * Interstage data bypassing
 
-Automatically generated pipeline visualization:
+### Topology visualization:
 [![Topology](https://raw.githubusercontent.com/wiki/MIPT-ILab/mipt-mips/topology.png)](https://github.com/MIPT-ILab/mipt-mips/tree/master/visualizer)
 
-More details about internals are available on [Wiki](https://github.com/MIPT-ILab/mipt-mips/wiki/Home/)
+### Pipeline diagrams:
+[![Pipeline](https://raw.githubusercontent.com/wiki/MIPT-ILab/mipt-mips/visualizer.png)](https://github.com/MIPT-ILab/PipelineVis)
+
+More details about internals are available on [Wiki](https://github.com/MIPT-ILab/mipt-mips/wiki/Home/).
+
+For questions, use our [Discussions](https://github.com/MIPT-ILab/mipt-mips/discussions) page.
 
 ## Requirements
 

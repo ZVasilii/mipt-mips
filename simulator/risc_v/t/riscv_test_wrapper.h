@@ -5,6 +5,7 @@
  */
 
 #include <catch.hpp>
+#include <infra/uint128.h>
 #include <memory/memory.h>
 #include <risc_v/riscv_instr.h>
 
